@@ -20,6 +20,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <% if current_user %>
+              <li class="nav-item active">
+                <%= link_to new_gram_path, class: "nav-link" do %>
+                  <i class="fa fa-plus-circle"></i>
+                  New Gram
+                <% end %>
+              </li>
+            <% end %>
           </ul>
           <ul class="navbar-nav">
             <% if current_user %> 
@@ -46,6 +54,7 @@
       <% end %>
       <%= yield %>
 
+    <br />
     <% if current_user %>
       You're signed in as <%= current_user.email %>.
     <% end %>
