@@ -15,7 +15,6 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should successfully show the new form" do
-      # FactoryBot.find_definitions
       user = FactoryBot.create(:user)
       sign_in user
 
@@ -31,7 +30,6 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should successfully create a gram in our database" do
-      # FactoryBot.find_definitions
       user = FactoryBot.create(:user)
       sign_in user
 
@@ -44,7 +42,6 @@ RSpec.describe GramsController, type: :controller do
     end
 
     it "should properly deal with validation errors" do
-      # FactoryBot.find_definitions
       user = FactoryBot.create(:user)
       sign_in user
 
@@ -54,5 +51,20 @@ RSpec.describe GramsController, type: :controller do
       expect(gram_count).to eq Gram.count
     end
   end
+
+  describe "grams#show action" do
+    it "should successfully show the page if the gram is found" do
+      gram = FactoryBot.create(:gram)
+      get :show, params: { id: gram.id }
+      expect(response).to have_http_status(:success)
+    end
+
+
+    it "should return a 404 error if the gram is not found" do
+      get :show, params: { id: 'TACOCAT' }
+      expect(response).to have_http_status(:not_found)
+    end
+  end
+
 
 end
