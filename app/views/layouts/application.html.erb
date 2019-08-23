@@ -12,27 +12,43 @@
 
   <body>
     <div id="flex-content-container">
-      <% if current_user %> 
-        You are logged in as <%= current_user.email %>.
-        <%= link_to "Sign out", destroy_user_seesion_path %>
-      <% else %>
-        <%= link_to "Sign In", new_user_session_path %>
-        <%= link_to "Sign Up", new_user_registration_path %>
-      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-inverse bg-inverse">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <%= link_to 'GRAMMABLE', root_path, class: 'navbar-brand' %>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+          </ul>
+          <ul class="navbar-nav">
+            <% if current_user %> 
+              <li class="nav-item">
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+
       <% if notice.present? %>
-        <p class="notice"><%= notice %></p>
+        <p class="notice alert-info"><%= notice %></p>
       <% end %>
       <% if alert.present? %>
-        <p class="alert"><%= alert %></p>
+        <p class="alert alert-danger"><%= alert %></p>
       <% end %>
       <%= yield %>
-    </div>
 
-    <div class="footer">
-      <div class="container">
+    <% if current_user %>
+      You're signed in as <%= current_user.email %>.
+    <% end %>
 
-
-      </div>
-    </div>
   </body>
 </html>
