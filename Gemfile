@@ -77,3 +77,7 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'devise'
+gem 'carrierwave-aws'
+# gem 'carrierwave', '~> 2.0'
+# gem "fog-aws"
+gem "figaro"
