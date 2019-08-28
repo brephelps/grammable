@@ -39,11 +39,5 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <%= yield %>
-
-    <br />
-    <% if current_user %>
-      You're signed in as <%= current_user.email %>.
-    <% end %>
-
   </body>
 </html>
